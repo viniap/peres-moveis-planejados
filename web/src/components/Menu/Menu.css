@@ -1,0 +1,160 @@
+div.menu-section nav ul {
+    display: flex;
+    align-items: center;
+
+    /*background-color: yellow;*/
+}
+
+div.menu-section nav ul li {
+    list-style: none;
+
+    /*background-color: blue;*/
+}
+  
+div.menu-section nav ul li a {
+    text-decoration: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+
+    /*background-color: green;*/
+}
+  
+div.menu-section nav ul li a.login {
+    width: 99px;
+    background-color: #009BFF;
+    border-radius: 8px;
+    font-weight: bold;
+    line-height: 30px;
+    color: white;
+    margin-right: 0;
+}
+  
+div.menu-section nav ul li a span:hover {
+    color: #0089E1;
+}
+  
+div.menu-section nav ul li a.login:hover {
+    background: #0089E1;
+}
+
+@media(max-width: 1000px){
+    div.menu-section nav ul li a {
+        margin-right: 40px;
+        transition: margin-right 200ms;
+    }
+}
+
+@media(min-width: 1000px){
+    div.menu-section nav ul li a {
+        margin-right: 80px;
+        transition: margin-right 200ms;
+    }
+}
+
+@media(max-width: 800px){
+    div.menu-section nav {
+        display: none;
+    }
+
+    div.menu-section nav ul li a.login {
+        all: inherit;
+    }
+
+    div.menu-section div.menu-toggle {
+        width: 40px;
+        height: 30px;
+        margin-right: 0;
+    }
+
+    div.menu-section div.menu-toggle div.one,
+    div.menu-section div.menu-toggle div.two,
+    div.menu-section div.menu-toggle div.three {
+        background-color: var(--primary-color);
+        height: 5px;
+        width: 100%;
+        margin: 6px auto;
+    }
+
+    div.menu-section.on {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100vw;
+        height: 100vh;
+
+        background-color: var(--primary-color);
+
+        z-index: 10;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: all 200ms;
+    }
+
+    div.menu-section.on nav {
+        display: block;
+    } 
+
+    div.menu-section.on nav ul {
+        display: block;
+    } 
+
+    div.menu-section.on nav ul li a {
+        color: white;
+        font-size: 3rem;
+        line-height: 8rem;
+        width: 100%;
+    }
+
+    div.menu-section.on nav ul li a.login {
+        font-weight: normal;
+        text-align: center;
+        /*background-color: transparent;*/
+        /* margin: unset */
+        /*margin-right: auto;
+        margin-left: 0;*/
+        
+    }
+
+    div.menu-section.on nav ul li:hover {
+        color: var(--secondary-color);
+    }
+
+    div.menu-section.on div.menu-toggle {
+        position: absolute;
+        right:20px;
+        top: 20px;
+        transition: all 500ms;
+    }
+
+    div.menu-section.on div.menu-toggle div.one {
+        transform: rotate(45deg) translate(7px, 7px);
+        background-color: white;
+        transition: all 500ms;
+    }
+
+    div.menu-section.on div.menu-toggle div.two {
+        opacity: 0;;
+    }
+
+    div.menu-section.on div.menu-toggle div.three {
+        transform: rotate(-45deg) translate(8px, -9px);
+        background-color: white;
+        transition: all 500ms;
+    }
+
+    
+
+    /*.menu-section.on nav a {
+        font-size: 3rem;
+        line-height: 8rem;
+    }*/
+}
