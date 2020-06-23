@@ -3,21 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './Login.css'
 
-import logo from '../../assets/logo.svg'
+import Header from '../../components/Header'
 
 const Login = () => {
     return (
         <div id="page-login">
             <div className="content">
-                <header>
-                    <img src={logo} alt="Peres Móveis Planejados"/>
-                    <div>
-                        <Link to="/sobre"><span>Sobre</span></Link>
-                        <Link to="/portfolio"><span>Portfólio</span></Link>
-                        <Link to="/contato"><span>Contato</span></Link>
-                        <Link className="login" to="/entrar">Entrar</Link>
-                    </div>
-                </header>
+                <Header />
 
                 <h1>Entrar</h1>
 
@@ -43,9 +35,16 @@ const Login = () => {
                             />
                         </div>
 
-                        <button type="submit">Entrar</button>
-                        {/*<Link to="/esqueci">Esqueci minha senha</Link>*/}
+                        <div className="button-group">
+                            <button type="submit">Entrar</button>
+                            <Link to="/esqueci">Esqueci minha senha</Link>
+                        </div>
                     </div>
+
+                    <main>
+                        <h6>Ainda não possui uma conta?</h6>
+                        <button className="register">Cadastre-se</button>
+                    </main>
                 </form>
             </div>
         </div>
