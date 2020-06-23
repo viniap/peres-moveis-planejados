@@ -24,24 +24,6 @@ div.menu-section nav ul li a {
     /*background-color: green;*/
 }
   
-div.menu-section nav ul li a.login {
-    width: 99px;
-    background-color: #009BFF;
-    border-radius: 8px;
-    font-weight: bold;
-    line-height: 30px;
-    color: white;
-    margin-right: 0;
-}
-  
-div.menu-section nav ul li a span:hover {
-    color: #0089E1;
-}
-  
-div.menu-section nav ul li a.login:hover {
-    background: #0089E1;
-}
-
 @media(max-width: 1000px){
     div.menu-section nav ul li a {
         margin-right: 40px;
@@ -49,7 +31,7 @@ div.menu-section nav ul li a.login:hover {
     }
 }
 
-@media(min-width: 1000px){
+@media(min-width: 1001px){
     div.menu-section nav ul li a {
         margin-right: 80px;
         transition: margin-right 200ms;
@@ -78,6 +60,7 @@ div.menu-section nav ul li a.login:hover {
         height: 5px;
         width: 100%;
         margin: 6px auto;
+        transition: all 500ms;
     }
 
     div.menu-section.on {
@@ -96,11 +79,14 @@ div.menu-section nav ul li a.login:hover {
         justify-content: center;
         align-items: center;
 
+        overflow: hidden;
+
         transition: all 200ms;
     }
 
     div.menu-section.on nav {
         display: block;
+        width: 100%;
     } 
 
     div.menu-section.on nav ul {
@@ -114,24 +100,19 @@ div.menu-section nav ul li a.login:hover {
         width: 100%;
     }
 
+    div.menu-section.on nav ul li a:hover {
+        background-color: var(--secondary-color);
+    }
+
     div.menu-section.on nav ul li a.login {
         font-weight: normal;
         text-align: center;
-        /*background-color: transparent;*/
-        /* margin: unset */
-        /*margin-right: auto;
-        margin-left: 0;*/
-        
-    }
-
-    div.menu-section.on nav ul li:hover {
-        color: var(--secondary-color);
     }
 
     div.menu-section.on div.menu-toggle {
         position: absolute;
-        right:20px;
-        top: 20px;
+        right:75px;
+        top: 50px;
         transition: all 500ms;
     }
 
@@ -150,11 +131,54 @@ div.menu-section nav ul li a.login:hover {
         background-color: white;
         transition: all 500ms;
     }
+}
 
+@media(min-width: 801px){
     
+    div.menu-section nav ul li a.login {
+        width: 99px;
+        background-color: #009BFF;
+        border-radius: 8px;
+        font-weight: bold;
+        line-height: 30px;
+        color: white;
+        margin-right: 0;
+    }
 
-    /*.menu-section.on nav a {
-        font-size: 3rem;
-        line-height: 8rem;
-    }*/
+    div.menu-section nav ul li a.login:hover {
+        background: #0089E1;
+    }
+
+    div.menu-section nav ul li a span:hover {
+        color: #0089E1;
+    }
+
+    div.menu-section div.menu-toggle {
+        display: none;
+    }
+}
+
+@media(max-width: 600px) {
+    div.menu-section div.menu-toggle {
+        width: 30px;
+        height: 22.5px;
+        margin-right: 0;
+        transition: all 500ms;
+    }
+
+    div.menu-section div.menu-toggle div.one,
+    div.menu-section div.menu-toggle div.two,
+    div.menu-section div.menu-toggle div.three {
+        height: 3.75px;
+        transition: all 500ms;
+    }
+
+    div.menu-section.on div.menu-toggle {
+        right:38px;
+        top: 45px;
+    }
+
+    div.menu-section.on div.menu-toggle div.one {
+        transform: rotate(45deg) translate(5px, 7px);
+    }
 }

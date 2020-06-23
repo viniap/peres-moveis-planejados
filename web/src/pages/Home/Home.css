@@ -189,3 +189,9 @@ div#page-home {
                 linear-gradient(180deg, #F0F0F5 0%, #FFFFFF 100%);
   }
 }
+
+@media(max-width: 600px) {
+  #page-home .content {
+    width: 85%;
+  }
+}

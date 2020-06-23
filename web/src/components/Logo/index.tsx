@@ -5,7 +5,7 @@ import './Logo.css';
 
 const Logo = () => {
     return (
-        <img src={logo} alt="Peres Móveis Planejados"/>
+        <img className="logo" src={logo} alt="Peres Móveis Planejados"/>
     );
 }
 
