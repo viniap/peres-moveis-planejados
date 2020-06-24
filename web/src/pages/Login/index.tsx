@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Login.css'
 
 import Header from '../../components/Header'
+import RegisterModal from '../RegisterModal'
 
 const Login = () => {
     return (
@@ -43,7 +44,7 @@ const Login = () => {
 
                     <main>
                         <h6>Ainda não possui uma conta?</h6>
-                        <button className="register">Cadastre-se</button>
+                        <RegisterModal />
                     </main>
                 </form>
             </div>

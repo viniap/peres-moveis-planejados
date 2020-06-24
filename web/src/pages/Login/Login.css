@@ -150,7 +150,7 @@ div#page-login div.content form main h6 {
   height: 40px;
 }
 
-div#page-login div.content form main button.register {
+div#page-login div.content form main div button {
   width: 120px;
   height: 40px;
   background: #009BFF;
@@ -166,6 +166,6 @@ div#page-login div.content form main button.register {
   margin-top: auto;
 }
 
-div#page-login div.content form main button:hover {
+div#page-login div.content form main div button:hover {
   background-color: var(--secondary-color);
 }
