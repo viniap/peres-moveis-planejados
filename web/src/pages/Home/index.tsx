@@ -19,7 +19,7 @@ const Home = () => {
                         e sob medida para sua casa ou estabelecimento? Agende uma visita já.
                     </p>
 
-                    <Link to="/cadastro">
+                    <Link to="/agendar">
                         <span>
                             <img src={handIcon} alt=""></img>
                         </span>
