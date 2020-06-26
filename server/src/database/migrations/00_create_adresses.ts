@@ -8,7 +8,7 @@ export async function up(knex: Knex) {
         table.string('city').notNullable();
         table.string('neighborhood').notNullable();
         table.string('street').notNullable();
-        table.string('number').notNullable();
+        table.string('num').notNullable();
         table.string('reference');
     });
 }

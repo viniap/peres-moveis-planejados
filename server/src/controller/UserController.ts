@@ -12,9 +12,7 @@ class UserController {
             name,
             surname,
             email,
-            whatsapp,
-            password,
-            address_id
+            password
         } = request.body;
 
         const emailExist = await knex.select(['*']).from('users').where('email', email);
@@ -33,9 +31,7 @@ class UserController {
                 name,
                 surname,
                 email,
-                whatsapp,
                 password: passwordHash,
-                address_id
             });
 
             return response.status(201).json({
@@ -45,8 +41,6 @@ class UserController {
                     name,
                     surname,
                     email,
-                    whatsapp,
-                    address_id
                 }
             })
 
@@ -128,28 +122,54 @@ class UserController {
             address
         } = request.body;
 
-        await knex('adresses')
-        .where('id', address.id)
-        .update({
-            cep: address.cep,
-            state: address.state,
-            city: address.city,
-            neighborhood: address.neighborhood,
-            street: address.street,
-            number: address.number,
-            reference: address.reference
-        })
+        const user = await knex('users').where('id', id);
 
-        await knex('users')
-        .where('id', id)
-        .update({
-            name,
-            surname,
-            email,
-            whatsapp,
-            password: undefined,
-            address_id: address.id
-        })
+        if(user[0].address_id != null){
+            await knex('adresses')
+            .where('id', user[0].address_id)
+            .update({
+                cep: address.cep,
+                state: address.state,
+                city: address.city,
+                neighborhood: address.neighborhood,
+                street: address.street,
+                num: address.number,
+                reference: address.reference
+            });
+
+            await knex('users')
+            .where('id', id)
+            .update({
+                name,
+                surname,
+                email,
+                whatsapp,
+                password: undefined,
+                address_id: undefined
+            });
+        }
+        else{
+            const addressId = await knex('adresses').insert({
+                cep: address.cep,
+                state: address.state,
+                city: address.city,
+                neighborhood: address.neighborhood,
+                street: address.street,
+                num: address.number,
+                reference: address.reference
+            });
+
+            await knex('users')
+            .where('id', id)
+            .update({
+                name,
+                surname,
+                email,
+                whatsapp,
+                password: undefined,
+                address_id: addressId[0]
+            });
+        }
 
         return response.status(200).json({
             message: 'Atualização efetuada com sucesso',
