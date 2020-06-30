@@ -1,13 +1,18 @@
 import React from 'react'
 
-import './Visit.css'
+import './Profile.css'
 import api from '../../services/api'
 
 import Header from '../../components/Header'
 import useAuth from '../../contexts/auth'
 
-const Visit = () => {
+const Profile = () => {
+    const { user } = useAuth();
+
     const [inputData, setInputData] = React.useState({
+        name: user?.name,
+        surname: user?.surname,
+        email: user?.email,
         cep: '',
         state: '',
         city: '',
@@ -15,14 +20,10 @@ const Visit = () => {
         street: '',
         number: '',
         reference: '',
-        whatsapp: '',
-        date: '',
-        time: '',
-        description: '',
-        image: ''
+        whatsapp: user?.whatsapp,
+        password: '',
+        newpassword: ''
     });
-
-    const { user } = useAuth();
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         const {name, value} = event.target;
@@ -43,18 +44,9 @@ const Visit = () => {
             reference: inputData.reference
         }
 
-        const datetime = inputData.date + " " + inputData.time;
-
-        const user_id = user?.id;
-        console.log(user_id);
-
         const visitData = {
-            user_id,
             address,
             whatsapp: inputData.whatsapp,
-            datetime,
-            description: inputData.description,
-            image: inputData.image
         }
     
         await api.post('visits', visitData);
@@ -63,15 +55,53 @@ const Visit = () => {
       }
 
     return (
-        <div id="page-visit">
+        <div id="page-profile">
             <div className="content">
                 <Header />
 
-                <h1>Agendamento de visita</h1>
+                <h1>Meu perfil</h1>
 
                 <span className="barra" ></span>
 
                 <form onSubmit={handleSubmit}>
+
+                    <div className="field-group">
+                        <div className="field">
+                            <label htmlFor="cep">Nome</label>
+                            <input 
+                                type="text"
+                                name="name"
+                                id="name"
+                                defaultValue={inputData.name}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+
+                        <div className="field">
+                            <label htmlFor="cep">Sobrenome</label>
+                            <input 
+                                type="text"
+                                name="surname"
+                                id="surname"
+                                defaultValue={inputData.surname}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="field-group">
+                        <div className="field">
+                            <label htmlFor="cep">E-mail</label>
+                            <input 
+                                type="email"
+                                name="email"
+                                id="email"
+                                defaultValue={inputData.email}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                    </div>
+
                     <div className="field-group">
                         <div className="field">
                             <label htmlFor="cep">CEP</label>
@@ -159,6 +189,7 @@ const Visit = () => {
                                 type="text"
                                 name="whatsapp"
                                 id="whatsapp"
+                                defaultValue={inputData.whatsapp}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -166,7 +197,7 @@ const Visit = () => {
 
                     <div className="field-group">
                         <div className="field">
-                            <label htmlFor="date">Data</label>
+                            <label htmlFor="date">Senha</label>
                             <input 
                                 type="text"
                                 name="date"
@@ -176,7 +207,7 @@ const Visit = () => {
                         </div>
 
                         <div className="field">
-                            <label htmlFor="time">Horário</label>
+                            <label htmlFor="time">Nova senha</label>
                             <input 
                                 type="text"
                                 name="time"
@@ -186,27 +217,11 @@ const Visit = () => {
                         </div>
                     </div>
 
-                    <div className="field-group description">
-                        <div className="field">
-                            <label htmlFor="description">Descrição dos móveis planejados</label>
-                            <input 
-                                type="text"
-                                name="description"
-                                id="description"
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                    </div>
-
-                    <p>Gostou de algum móvel e deseja algo igual ou parecido? Envie-nos uma imagem</p>
-
-                    <button className="upload">Upload</button>
-
-                    <button className="schedule" type="submit">Agendar</button>
+                    <button className="schedule" type="submit">Salvar</button>
                 </form>
             </div>
         </div>
     );
 }
 
-export default Visit;
+export default Profile;

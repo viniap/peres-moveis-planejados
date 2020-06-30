@@ -2,11 +2,14 @@ import React from 'react';
 import {} from 'react-icons/';
 import { Link } from 'react-router-dom';
 
+import useAuth from '../../contexts/auth'
 import handIcon from '../../assets/hand.svg'
 import './Home.css'
 import Header from '../../components/Header'
 
 const Home = () => {
+    const {signOut} = useAuth();
+
     return (
         <div id="page-home">
             <div className="content">
@@ -18,6 +21,7 @@ const Home = () => {
                         Mora no Distrito Federal e deseja móveis planejados exclusivos 
                         e sob medida para sua casa ou estabelecimento? Agende uma visita já.
                     </p>
+                    <button onClick={signOut}>Sair</button>
 
                     <Link to="/agendar">
                         <span>

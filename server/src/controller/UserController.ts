@@ -80,19 +80,19 @@ class UserController {
 
                     });
                 
-                    const data = {
+                    const userData = {
                         id: user[0].id,
                         name: user[0].name,
                         surname: user[0].surname,
                         email: user[0].email,
                         whatsapp: user[0].whatsapp,
                         address_id: user[0].address_id,
-                        token
                     }
                 
                     return response.status(200).json({ 
                         message: 'Autenticação efetuada com sucesso',
-                        user: data
+                        token,
+                        user: userData
                     });
 
                 }
