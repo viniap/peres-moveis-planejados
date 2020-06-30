@@ -59,7 +59,7 @@ class UserController {
 
         if(user.length > 0){
             
-            await bcrypt.compare(password, user[0].password, (errBcrypt, result) => {
+            await bcrypt.compare(password, user[0].password, async (errBcrypt, result) => {
 
                 if(errBcrypt){
                     return response.status(401). json({ message: 'Falha na autenticação' });
@@ -79,14 +79,41 @@ class UserController {
                         expiresIn: '2h'
 
                     });
-                
+
+                    if(user[0].address_id != null) {
+                        const address = await knex('adresses').where('id', user[0].address_id);
+
+                        const userData = {
+                            id: user[0].id,
+                            name: user[0].name,
+                            surname: user[0].surname,
+                            email: user[0].email,
+                            whatsapp: user[0].whatsapp,
+                            address: {
+                                cep: address[0].cep,
+                                state: address[0].state,
+                                city: address[0].city,
+                                neighborhood: address[0].neighborhood,
+                                street: address[0].street,
+                                num: address[0].number,
+                                reference: address[0].reference
+                            },
+                        }
+
+                        return response.status(200).json({ 
+                            message: 'Autenticação efetuada com sucesso',
+                            token,
+                            user: userData
+                        });
+                    }
+                    
                     const userData = {
                         id: user[0].id,
                         name: user[0].name,
                         surname: user[0].surname,
                         email: user[0].email,
                         whatsapp: user[0].whatsapp,
-                        address_id: user[0].address_id,
+                        address: null,
                     }
                 
                     return response.status(200).json({ 

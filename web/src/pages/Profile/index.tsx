@@ -5,6 +5,7 @@ import api from '../../services/api'
 
 import Header from '../../components/Header'
 import useAuth from '../../contexts/auth'
+import { isNull } from 'util'
 
 const Profile = () => {
     const { user } = useAuth();
@@ -13,13 +14,13 @@ const Profile = () => {
         name: user?.name,
         surname: user?.surname,
         email: user?.email,
-        cep: '',
-        state: '',
-        city: '',
-        neighborhood: '',
-        street: '',
-        number: '',
-        reference: '',
+        cep: user?.address?.cep,
+        state: user?.address?.state,
+        city: user?.address?.city,
+        neighborhood: user?.address?.neighborhood,
+        street: user?.address?.street,
+        number: user?.address?.number,
+        reference: user?.address?.reference,
         whatsapp: user?.whatsapp,
         password: '',
         newpassword: ''
@@ -44,14 +45,19 @@ const Profile = () => {
             reference: inputData.reference
         }
 
-        const visitData = {
-            address,
+        const profileData = {
+            name: inputData.name,
+            surname: inputData.surname,
+            email: inputData.email,
             whatsapp: inputData.whatsapp,
+            address
         }
     
-        await api.post('visits', visitData);
+        await api.put(`users/${user?.id}`, profileData);
+
+        //TODO: If OK, update user context
     
-        alert('Visita agendada com sucesso');
+        alert('Perfil atualizado com sucesso');
       }
 
     return (
@@ -109,6 +115,7 @@ const Profile = () => {
                                 type="text"
                                 name="cep"
                                 id="cep"
+                                defaultValue={inputData.cep}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -121,6 +128,7 @@ const Profile = () => {
                                 type="text"
                                 name="state"
                                 id="state"
+                                defaultValue={inputData.state}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -131,6 +139,7 @@ const Profile = () => {
                                 type="text"
                                 name="city"
                                 id="city"
+                                defaultValue={inputData.city}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -143,6 +152,7 @@ const Profile = () => {
                                 type="text"
                                 name="neighborhood"
                                 id="neighborhood"
+                                defaultValue={inputData.neighborhood}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -155,6 +165,7 @@ const Profile = () => {
                                 type="text"
                                 name="street"
                                 id="street"
+                                defaultValue={inputData.street}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -165,6 +176,7 @@ const Profile = () => {
                                 type="text"
                                 name="num"
                                 id="num"
+                                defaultValue={inputData.number}
                                 onChange={handleInputChange}
                             />
                         </div>
@@ -177,6 +189,7 @@ const Profile = () => {
                                 type="text"
                                 name="reference"
                                 id="reference"
+                                defaultValue={isNull(inputData.reference) ? '' : inputData.reference}
                                 onChange={handleInputChange}
                             />
                         </div>

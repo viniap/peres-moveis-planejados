@@ -1,13 +1,23 @@
 import React from 'react'
 import api from '../services/api'
 
+interface Address {
+    cep: string;
+    state: string;
+    city: string;
+    neighborhood: string;
+    street: string;
+    number: string;
+    reference: string | null;
+}
+
 interface User {
     id: number;
     name: string;
     surname: string;
     email: string;
     whatsapp: string;
-    address_id: number;
+    address: Address | null;
 }
 
 interface AuthContextData {
@@ -60,6 +70,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     function signOut() {
         localStorage.clear();
         setUser(null);
+    }
+
+    function updateUser(newUser: User) {
+        setUser(newUser);
     }
 
     return(
