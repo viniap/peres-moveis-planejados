@@ -1,22 +1,4 @@
-div#page-visit {
-    height: 100%;
-    background: none, linear-gradient(180deg, #F0F0F5 0%, #FFFFFF 100%);
-}
-
-div#page-visit div.content {
-    width: 76%;
-    height: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-  
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  
-    /*background-color: tomato;*/
-}
-
-div#page-visit div.content h1 {
+h1.visit {
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -24,14 +6,14 @@ div#page-visit div.content h1 {
     margin-top: 40px;
 }
 
-div#page-visit div.content span.barra {
+span.barra {
     margin: 10px auto 0px;
     width: 100%;
     height: 10px;
     background: linear-gradient(90deg, #009BFF 0%, rgba(227, 17, 17, 0.85) 100%);
 }
 
-div#page-visit div.content form {
+form.visit {
     margin: 0px auto;
     padding: 40px;
     width: 100%;
@@ -42,7 +24,7 @@ div#page-visit div.content form {
     flex-direction: column;
 }
 
-div#page-visit div.content form div.field-group {
+form.visit div.field-group {
     /*margin: 0px auto auto 0px;*/
     /*padding: 40px;*/
     width: 100%;
@@ -53,13 +35,13 @@ div#page-visit div.content form div.field-group {
     flex-direction: row;
 }
   
-div#page-visit div.content form div.field-group div.field {
+form.visit div.field-group div.field {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-div#page-visit div.content form div.field-group div.field label {
+form.visit div.field-group div.field label {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -67,9 +49,9 @@ div#page-visit div.content form div.field-group div.field label {
     margin-bottom: 10px;
 }
 
-div#page-visit div.content form div.field-group div.field input[type=text],
-div#page-visit div.content form div.field-group div.field input[type=email],
-div#page-visit div.content form div.field-group div.field input[type=password] {
+form.visit div.field-group div.field input[type=text],
+form.visit div.field-group div.field input[type=email],
+form.visit div.field-group div.field input[type=password] {
     /*flex: 1;*/
     height: 30px;
     width: 90%;
@@ -82,31 +64,31 @@ div#page-visit div.content form div.field-group div.field input[type=password] {
     margin-bottom: 10px;
 }
 
-div#page-visit div.content form div.field-group div.field input#cep,
-div#page-visit div.content form div.field-group div.field input#neighborhood,
-div#page-visit div.content form div.field-group div.field input#reference,
-div#page-visit div.content form div.field-group div.field input#whatsapp {
+form.visit div.field-group div.field input#cep,
+form.visit div.field-group div.field input#neighborhood,
+form.visit div.field-group div.field input#reference,
+form.visit div.field-group div.field input#whatsapp {
     width: 45%;
 }
 
-div#page-visit div.content form div.field-group.description {
+form.visit div.field-group.description {
     /*margin: 0px auto auto 0px;*/
     /*padding: 40px;*/
     height: 300px;
     /*background: black;*/
 }
 
-div#page-visit div.content form div.field-group div.field input#description {
+form.visit div.field-group div.field input#description {
     height: 100%;
     width: 95%;
 }
 
-div#page-visit div.content form div.field-group div.field input:focus {
+form.visit div.field-group div.field input:focus {
     outline: none !important;
     border:2px solid #38607A;
 }
 
-div#page-visit div.content form div.field-group div.button-group {
+form.visit div.field-group div.button-group {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -114,7 +96,7 @@ div#page-visit div.content form div.field-group div.button-group {
   /*background-color: chartreuse;*/
 }
 
-div#page-visit div.content form button.schedule {
+form.visit button.schedule {
   width: 120px;
   height: 40px;
   background: #009BFF;
@@ -129,16 +111,16 @@ div#page-visit div.content form button.schedule {
   cursor: pointer;
 }
 
-div#page-visit div.content form button.schedule:hover {
+form.visit button.schedule:hover {
   background: #0089E1;
 }
 
-div#page-visit div.content form p {
+form.visit p {
     font-size: 2.0rem;
     margin-top: 30px;
 }
 
-div#page-visit div.content form button.upload {
+form.visit button.upload {
     background: #2C85BF;
     color: #ffffff;
     border-style: none;

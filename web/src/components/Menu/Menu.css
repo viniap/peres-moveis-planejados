@@ -1,14 +1,39 @@
-div.menu-section nav ul {
-    display: flex;
-    align-items: center;
-
-    /*background-color: yellow;*/
+div.menu-section a.login {
+    width: 99px;
+    background-color: #009BFF;
+    border-radius: 8px;
+    font-weight: bold;
+    line-height: 30px;
+    color: white;
+    margin-right: 0;
 }
 
-div.menu-section nav ul li {
-    list-style: none;
+div.menu-section a.login:hover {
+    background: #0089E1;
+}
 
-    /*background-color: blue;*/
+div.menu-section p.hello {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    margin-right: 20px;
+    color: #2C85BF;
+}
+
+div.menu-section button.arrow {
+    width: 30px;
+    height: 30px;
+    background-color: #009BFF;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0;
+    border-style: none;
+    cursor: pointer;
 }
   
 div.menu-section nav ul li a {
@@ -39,11 +64,8 @@ div.menu-section nav ul li a {
 }
 
 @media(max-width: 800px){
-    div.menu-section nav {
-        display: none;
-    }
 
-    div.menu-section nav ul li a.login {
+    div.menu-section a.login {
         all: inherit;
     }
 
@@ -104,7 +126,7 @@ div.menu-section nav ul li a {
         background-color: var(--secondary-color);
     }
 
-    div.menu-section.on nav ul li a.login {
+    div.menu-section.on nav ul li.unsigned a.login {
         font-weight: normal;
         text-align: center;
     }
@@ -134,20 +156,6 @@ div.menu-section nav ul li a {
 }
 
 @media(min-width: 801px){
-    
-    div.menu-section nav ul li a.login {
-        width: 99px;
-        background-color: #009BFF;
-        border-radius: 8px;
-        font-weight: bold;
-        line-height: 30px;
-        color: white;
-        margin-right: 0;
-    }
-
-    div.menu-section nav ul li a.login:hover {
-        background: #0089E1;
-    }
 
     div.menu-section nav ul li a span:hover {
         color: #0089E1;

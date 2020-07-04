@@ -72,9 +72,9 @@ export const AuthProvider: React.FC = ({ children }) => {
         setUser(null);
     }
 
-    function updateUser(newUser: User) {
+    /*function updateUser(newUser: User) {
         setUser(newUser);
-    }
+    }*/
 
     return(
         <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }}>

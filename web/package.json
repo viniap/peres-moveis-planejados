@@ -20,7 +20,7 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start --no-notify",
+    "start": "react-scripts start --ignore-watch node_modules --no-notify",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

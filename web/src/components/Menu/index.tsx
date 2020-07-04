@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Menu.css';
 
+import Navbar from '../Navbar';
+import NavItem from '../NavItem';
+import { ReactComponent as Arrow } from '../../assets/arrow.svg'
+import useAuth from '../../contexts/auth'
+
 const Menu = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = React.useState(false);
     const toggle = () => setIsOpen(!isOpen);
+
+    const [dropDownMenu, setDropDownMenu] = React.useState(false);
+    const toggleDropDownMenu = () => setDropDownMenu(!dropDownMenu);
+
+    const { signed, user } = useAuth();
 
     return (
             <div className={isOpen ? "menu-section on" : "menu-section"}>
@@ -15,25 +25,31 @@ const Menu = () => {
                     <div className="three"></div>
                 </div>
 
-                <nav>
-                    <ul>
-                        <li>
+                <Navbar>
+                    <NavItem display={true}>
                         <Link to="/sobre"><span>Sobre</span></Link>
-                        </li>
+                    </NavItem>
 
-                        <li>
+                    <NavItem display={true}>
                         <Link to="/portfolio"><span>Portfólio</span></Link>
-                        </li>
+                    </NavItem>
 
-                        <li>
+                    <NavItem display={true}>
                         <Link to="/contato"><span>Contato</span></Link>
-                        </li>
+                    </NavItem>
 
-                        <li>
+                    <NavItem display={signed ? false : true}>
                         <Link className="login" to="/entrar">Entrar</Link>
-                        </li>
-                    </ul>
-                </nav>
+                    </NavItem>
+
+                    <NavItem display={signed ? true : false}>
+                        <p className="hello">Olá,<br/>{ user?.name }</p>
+
+                        <button className="arrow" onClick={toggleDropDownMenu}>
+                            <Arrow/>
+                        </button>
+                    </NavItem>
+                </Navbar>
             </div>
     );
 }

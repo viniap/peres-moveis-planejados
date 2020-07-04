@@ -1,0 +1,7 @@
+li.nav-item {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*background-color: blue;*/
+}

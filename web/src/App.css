@@ -5,6 +5,7 @@
     --title-color: #38607A;
     --text-color: #38607A;
     font-size: 62.5%;
+    margin-top: 0 !important;
   }
   
   * {

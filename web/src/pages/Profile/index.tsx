@@ -5,6 +5,8 @@ import api from '../../services/api'
 
 import Header from '../../components/Header'
 import useAuth from '../../contexts/auth'
+import Page from '../../components/Page'
+import Content from '../../components/Content'
 import { isNull } from 'util'
 
 const Profile = () => {
@@ -61,15 +63,15 @@ const Profile = () => {
       }
 
     return (
-        <div id="page-profile">
-            <div className="content">
+        <Page id="page-profile">
+            <Content>
                 <Header />
 
-                <h1>Meu perfil</h1>
+                <h1 className="profile">Meu perfil</h1>
 
                 <span className="barra" ></span>
 
-                <form onSubmit={handleSubmit}>
+                <form className="profile" onSubmit={handleSubmit}>
 
                     <div className="field-group">
                         <div className="field">
@@ -232,8 +234,8 @@ const Profile = () => {
 
                     <button className="schedule" type="submit">Salvar</button>
                 </form>
-            </div>
-        </div>
+            </Content>
+        </Page>
     );
 }
 

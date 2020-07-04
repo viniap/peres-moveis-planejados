@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Visit from './pages/Visit'
 import Profile from './pages/Profile'
+import Dashboard from './pages/Dashboard'
 
 const LoggedRoutes = () => {
     return (
@@ -14,6 +15,7 @@ const LoggedRoutes = () => {
             <Route component={Home} path="/" exact />
             <Route component={Visit} path="/agendar" />
             <Route component={Profile} path="/perfil" />
+            <Route component={Dashboard} path="/painel" />
         </BrowserRouter>
     );
 }
@@ -29,7 +31,7 @@ const UnloggedRoutes = () => {
 
 const Routes = () => {
 
-    const {signed} = useAuth();
+    const { signed } = useAuth();
 
     return signed ? <LoggedRoutes/> : <UnloggedRoutes/>;
 }

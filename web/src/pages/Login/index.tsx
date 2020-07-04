@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import './Login.css'
 
 import Header from '../../components/Header'
-import RegisterModal from '../RegisterModal'
+import RegisterModal from '../../components/RegisterModal'
 import useAuth from '../../contexts/auth'
+import Page from '../../components/Page'
+import Content from '../../components/Content'
 
 const Login = () => {
 
@@ -36,15 +38,15 @@ const Login = () => {
     }
 
     return (
-        <div id="page-login">
-            <div className="content">
+        <Page id="page-login">
+            <Content>
                 <Header />
 
-                <h1>Entrar</h1>
+                <h1 className="login">Entrar</h1>
 
                 <span className="barra" ></span>
 
-                <form onSubmit={handleSubmit}>
+                <form className="login" onSubmit={handleSubmit}>
                     <div className="field-group">
                         <div className="field">
                             <label htmlFor="email">E-mail</label>
@@ -77,8 +79,8 @@ const Login = () => {
                         <RegisterModal />
                     </main>
                 </form>
-            </div>
-        </div>
+            </Content>
+        </Page>
     );
 }
 

@@ -1,0 +1,12 @@
+nav.navbar ul.navbar-nav {
+    display: flex;
+    align-items: center;
+
+    /*background-color: yellow;*/
+}
+
+@media(max-width: 800px){
+    nav.navbar {
+        display: none;
+    }
+}

@@ -5,6 +5,8 @@ import api from '../../services/api'
 
 import Header from '../../components/Header'
 import useAuth from '../../contexts/auth'
+import Page from '../../components/Page'
+import Content from '../../components/Content'
 
 const Visit = () => {
     const [inputData, setInputData] = React.useState({
@@ -63,15 +65,15 @@ const Visit = () => {
       }
 
     return (
-        <div id="page-visit">
-            <div className="content">
+        <Page id="page-visit">
+            <Content>
                 <Header />
 
-                <h1>Agendamento de visita</h1>
+                <h1 className="visit">Agendamento de visita</h1>
 
                 <span className="barra" ></span>
 
-                <form onSubmit={handleSubmit}>
+                <form className="visit" onSubmit={handleSubmit}>
                     <div className="field-group">
                         <div className="field">
                             <label htmlFor="cep">CEP</label>
@@ -204,8 +206,8 @@ const Visit = () => {
 
                     <button className="schedule" type="submit">Agendar</button>
                 </form>
-            </div>
-        </div>
+            </Content>
+        </Page>
     );
 }
 

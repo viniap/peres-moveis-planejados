@@ -1,38 +1,19 @@
-div#page-login {
-    height: 100vh;
-    background: none, linear-gradient(180deg, #F0F0F5 0%, #FFFFFF 100%);
-    overflow: hidden;
-  }
+h1.login {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3.6rem;
+  margin-top: 40px;
+}
 
-  div#page-login div.content {
-    width: 76%;
-    height: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-  
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  
-    /*background-color: tomato;*/
-  }
-
-  div#page-login div.content h1 {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 3.6rem;
-    margin-top: 40px;
-  }
-
-  div#page-login div.content span.barra {
+  span.barra {
     margin: 10px auto 0px;
     width: 100%;
     height: 10px;
     background: linear-gradient(90deg, #009BFF 0%, rgba(227, 17, 17, 0.85) 100%);
   }
   
-  div#page-login div.content form {
+  form.login {
     margin: 0px auto;
     padding: 40px;
     width: 100%;
@@ -43,7 +24,7 @@ div#page-login {
     flex-direction: row;
   }
 
-  div#page-login div.content form div.field-group {
+  form.login div.field-group {
     /*margin: 0px auto auto 0px;*/
     /*padding: 40px;*/
     width: 450px;
@@ -54,13 +35,13 @@ div#page-login {
     flex-direction: column;
   }
   
-  div#page-login div.content form div.field-group div.field {
+  form.login div.field-group div.field {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
 
-  div#page-login div.content form div.field-group div.field label {
+  form.login div.field-group div.field label {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -68,9 +49,9 @@ div#page-login {
     margin-bottom: 10px;
   }
   
-  div#page-login div.content form div.field-group div.field input[type=text],
-  div#page-login div.content form div.field-group div.field input[type=email],
-  div#page-login div.content form div.field-group div.field input[type=password] {
+  form.login div.field-group div.field input[type=text],
+  form.login div.field-group div.field input[type=email],
+  form.login div.field-group div.field input[type=password] {
     /*flex: 1;*/
     height: 30px;
     width: 450px;
@@ -83,12 +64,12 @@ div#page-login {
     margin-bottom: 10px;
   }
 
-  div#page-login div.content form div.field-group div.field input:focus {
+  form.login div.field-group div.field input:focus {
     outline: none !important;
     border:2px solid #38607A;
 }
 
-div#page-login div.content form div.field-group div.button-group {
+form.login div.field-group div.button-group {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -96,7 +77,7 @@ div#page-login div.content form div.field-group div.button-group {
   /*background-color: chartreuse;*/
 }
 
-div#page-login div.content form div.field-group div.button-group button {
+form.login div.field-group div.button-group button {
   width: 99px;
   height: 30px;
   background: #009BFF;
@@ -111,7 +92,7 @@ div#page-login div.content form div.field-group div.button-group button {
   cursor: pointer;
 }
 
-div#page-login div.content form div.field-group div.button-group a {
+form.login div.field-group div.button-group a {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -128,11 +109,11 @@ div#page-login div.content form div.field-group div.button-group a {
   text-decoration-line: underline;
 }
 
-#page-login .content form .field-group .button-group button:hover {
+form.login .field-group .button-group button:hover {
   background: #0089E1;
 }
 
-div#page-login div.content form main {
+form.login main {
   width: 450px;
   margin-right: 0;
   margin-left: auto;
@@ -142,7 +123,7 @@ div#page-login div.content form main {
   /*background-color: tomato;*/
 }
 
-div#page-login div.content form main h6 {
+form.login main h6 {
   /*margin-left: 135px;*/
   margin-top: 50px;
   /*background-color: chartreuse;*/
@@ -150,7 +131,7 @@ div#page-login div.content form main h6 {
   height: 40px;
 }
 
-div#page-login div.content form main div button {
+form.login main div button {
   width: 120px;
   height: 40px;
   background: #009BFF;
@@ -166,6 +147,6 @@ div#page-login div.content form main div button {
   margin-top: auto;
 }
 
-div#page-login div.content form main div button:hover {
+form.login main div button:hover {
   background-color: var(--secondary-color);
 }
