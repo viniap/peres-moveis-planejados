@@ -5,25 +5,56 @@ import './Menu.css';
 
 import Navbar from '../Navbar';
 import NavItem from '../NavItem';
+import HamburguerMenu from '../HamburguerMenu'
+import HamburguerMenuItem from '../HamburguerMenuItem'
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 import useAuth from '../../contexts/auth'
 
 const Menu = () => {
-    const [isOpen, setIsOpen] = React.useState(false);
-    const toggle = () => setIsOpen(!isOpen);
-
     const [dropDownMenu, setDropDownMenu] = React.useState(false);
     const toggleDropDownMenu = () => setDropDownMenu(!dropDownMenu);
 
-    const { signed, user } = useAuth();
+    const { signed, user, signOut } = useAuth();
 
     return (
-            <div className={isOpen ? "menu-section on" : "menu-section"}>
-                <div onClick={toggle} className="menu-toggle">
-                    <div className="one"></div>
-                    <div className="two"></div>
-                    <div className="three"></div>
-                </div>
+            <div className="menu-section">
+                <HamburguerMenu>
+                    <HamburguerMenuItem display={signed ? true : false}>
+                        <p className="hello-hamburguer">Olá, { user?.name }</p>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={true}>
+                        <Link className="hamburguer-menu-link" to="/sobre"><span>Sobre</span></Link>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={true}>
+                        <Link className="hamburguer-menu-link" to="/portfolio"><span>Portfólio</span></Link>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={true}>
+                        <Link className="hamburguer-menu-link" to="/contato"><span>Contato</span></Link>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={signed ? false : true}>
+                        <Link className="hamburguer-menu-link" to="/entrar">Entrar</Link>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={signed ? true : false}>
+                        <Link className="hamburguer-menu-link" to="/painel"><span>Meu painel</span></Link>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={signed ? true : false}>
+                        <Link className="hamburguer-menu-link" to="/perfil"><span>Meu perfil</span></Link>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={signed ? true : false}>
+                        <Link className="hamburguer-menu-link" to="/agendar"><span>Agendamento de visita</span></Link>
+                    </HamburguerMenuItem>
+
+                    <HamburguerMenuItem display={signed ? true : false}>
+                        <button className="hamburguer-menu-link button" onClick={signOut}>Sair</button>
+                    </HamburguerMenuItem>
+                </HamburguerMenu>
 
                 <Navbar>
                     <NavItem display={true}>

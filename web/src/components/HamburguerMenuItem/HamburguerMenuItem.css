@@ -1,0 +1,7 @@
+li.hamburguer-menu-item {
+    width: 100%;
+}
+
+li.hamburguer-menu-tem.off {
+    display: none;
+}

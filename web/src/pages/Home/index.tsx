@@ -9,7 +9,7 @@ import Page from '../../components/Page'
 import Content from '../../components/Content'
 
 const Home = () => {
-    const { signOut } = useAuth();
+    const { signed } = useAuth();
 
     return (
         <Page id="page-home">
@@ -24,7 +24,7 @@ const Home = () => {
                         e sob medida para sua casa ou estabelecimento? Agende uma visita já.
                     </p>
 
-                    <Link to="/agendar">
+                    <Link to={signed ? "/agendar" : "/entrar"}>
                         <span>
                             <img src={handIcon} alt=""></img>
                         </span>
