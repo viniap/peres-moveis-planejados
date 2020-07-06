@@ -2,14 +2,15 @@ import React from 'react';
 
 import './DropDownMenu.css'
 
-interface DropDownMenuProps {
-    open: boolean;
-}
+import DropDownMenuItem from '../DropDownMenuItem';
 
-const DropDownMenu: React.FC<DropDownMenuProps> = (props) => {
+const DropDownMenu: React.FC = (props) => {
     return (
-        <div className={props.open ? "dropdown on" : "dropdown off"}>
-
+        <div className="dropdown">
+            <DropDownMenuItem path="painel">Meu painel</DropDownMenuItem>
+            <DropDownMenuItem path="perfil">Meu perfil</DropDownMenuItem>
+            <DropDownMenuItem path="agendar">Agendar visita</DropDownMenuItem>
+            <DropDownMenuItem>Sair</DropDownMenuItem>
         </div>
     );
 }

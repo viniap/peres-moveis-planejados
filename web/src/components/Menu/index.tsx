@@ -7,13 +7,11 @@ import Navbar from '../Navbar';
 import NavItem from '../NavItem';
 import HamburguerMenu from '../HamburguerMenu'
 import HamburguerMenuItem from '../HamburguerMenuItem'
-import { ReactComponent as Arrow } from '../../assets/arrow.svg'
+import DropDownMenu from '../DropDownMenu';
+import { ReactComponent as ArrowIcon } from '../../assets/arrow.svg'
 import useAuth from '../../contexts/auth'
 
 const Menu = () => {
-    const [dropDownMenu, setDropDownMenu] = React.useState(false);
-    const toggleDropDownMenu = () => setDropDownMenu(!dropDownMenu);
-
     const { signed, user, signOut } = useAuth();
 
     return (
@@ -75,10 +73,10 @@ const Menu = () => {
 
                     <NavItem display={signed ? true : false}>
                         <p className="hello">Olá,<br/>{ user?.name }</p>
+                    </NavItem>
 
-                        <button className="arrow" onClick={toggleDropDownMenu}>
-                            <Arrow/>
-                        </button>
+                    <NavItem icon={<ArrowIcon />} display={signed ? true : false}>
+                        <DropDownMenu></DropDownMenu>
                     </NavItem>
                 </Navbar>
             </div>
