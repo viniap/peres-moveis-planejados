@@ -1,0 +1,25 @@
+div.section-header {
+    width: 100%;
+    margin-top: 40px;
+}
+
+div.section-header h1.section-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3.6rem;
+  }
+  
+div.section-header div.horizontal-bar {
+    margin: 10px auto 0px;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, #009BFF 0%, rgba(227, 17, 17, 0.85) 100%);
+}
+
+@media(max-width: 600px) {
+    div.section-header h1.section-title {
+        font-size: 2.8rem;
+        transition: font-size 200ms ease;
+    }
+}

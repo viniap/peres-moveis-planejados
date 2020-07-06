@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Login.css'
+import './Login.css';
 
-import Header from '../../components/Header'
-import RegisterModal from '../../components/RegisterModal'
-import useAuth from '../../contexts/auth'
-import Page from '../../components/Page'
-import Content from '../../components/Content'
+import Header from '../../components/Header';
+import RegisterModal from '../../components/RegisterModal';
+import useAuth from '../../contexts/auth';
+import Page from '../../components/Page';
+import Content from '../../components/Content';
+import SectionHeader from '../../components/SectionHeader';
 
 const Login = () => {
 
@@ -42,9 +43,7 @@ const Login = () => {
             <Content>
                 <Header />
 
-                <h1 className="login">Entrar</h1>
-
-                <span className="barra" ></span>
+                <SectionHeader>Entrar</SectionHeader>
 
                 <form className="login" onSubmit={handleSubmit}>
                     <div className="field-group">
