@@ -1,57 +1,60 @@
 form.login {
-    margin: 0px auto;
-    padding: 40px;
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(90deg, rgba(0, 155, 255, 0.15) 0%, rgba(227, 17, 17, 0.1) 100%);
+  max-width: 550px;
+  width: 100%;
+  height: 100%;
+  /*background-color: tomato;*/
+  display: flex;
+  justify-content: center;
+}
 
-    display: flex;
-    flex-direction: row;
-  }
+form.login div.field-group {
+  width: 90%;
+  height: 90%;
+  /*background: black;*/
 
-  form.login div.field-group {
-    /*margin: 0px auto auto 0px;*/
-    /*padding: 40px;*/
-    width: 450px;
-    height: 220px;
-    /*background: black;*/
-
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
   
-  form.login div.field-group div.field {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  form.login div.field-group div.field label {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
+form.login div.field-group div.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /*background-color: teal;*/
+}
   
-  form.login div.field-group div.field input[type=text],
-  form.login div.field-group div.field input[type=email],
-  form.login div.field-group div.field input[type=password] {
-    /*flex: 1;*/
-    height: 30px;
-    width: 450px;
-    background: #ffffff;
-    border-radius: 8px;
-    border: 0;
-    padding-left: 10px;
-    font-size: 16px;
-    color: #000000;
-    margin-bottom: 10px;
-  }
+form.login div.field-group div.field label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.0rem;
+  margin-bottom: 10px;
+}
+  
+form.login div.field-group div.field input.input-style[type=text],
+form.login div.field-group div.field input.input-style[type=email],
+form.login div.field-group div.field input.input-style[type=password] {
+  /*flex: 1;*/
+  height: 30px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 0;
+  padding-left: 10px;
+  align-items: center;
+  font-size: 1.6rem;
+  color: #000000;
+  margin-bottom: 5px;
+}
+  
+form.login div.field-group div.field input.input-style:focus {
+  outline: none !important;
+  border:1px solid #38607A;
+}
 
-  form.login div.field-group div.field input:focus {
-    outline: none !important;
-    border:2px solid #38607A;
+form.login div.field-group div.field input.input-style.incorrect {
+  border:1px solid tomato;
 }
 
 form.login div.field-group div.button-group {
@@ -63,8 +66,8 @@ form.login div.field-group div.button-group {
 }
 
 form.login div.field-group div.button-group button {
-  width: 99px;
-  height: 30px;
+  width: 100px;
+  height: 100%;
   background: #009BFF;
   border-radius: 8px;
   color: #FFF;
@@ -72,9 +75,12 @@ form.login div.field-group div.button-group button {
   font-size: 1.6rem;
   border: 0;
   align-self: flex-start;
-  margin-bottom: 0;
-  transition: background-color 0.2s;
   cursor: pointer;
+}
+
+form.login div.field-group div.button-group button:disabled {
+  cursor: not-allowed;
+  background: rgba(0, 155, 255, 0.5)
 }
 
 form.login div.field-group div.button-group a {
@@ -98,7 +104,12 @@ form.login .field-group .button-group button:hover {
   background: #0089E1;
 }
 
-form.login main {
+form.login {
+  width: 100%;
+  height: 100%;
+}
+
+main.login {
   width: 450px;
   margin-right: 0;
   margin-left: auto;
@@ -108,7 +119,7 @@ form.login main {
   /*background-color: tomato;*/
 }
 
-form.login main h6 {
+main.login h6 {
   /*margin-left: 135px;*/
   margin-top: 50px;
   /*background-color: chartreuse;*/
@@ -116,7 +127,7 @@ form.login main h6 {
   height: 40px;
 }
 
-form.login main div button {
+main.login div button {
   width: 120px;
   height: 40px;
   background: #009BFF;
@@ -132,6 +143,13 @@ form.login main div button {
   margin-top: auto;
 }
 
-form.login main div button:hover {
+main.login div button:hover {
   background-color: var(--secondary-color);
+}
+
+form.login div.field-group div.field span {
+  font-weight: normal;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: tomato;
 }

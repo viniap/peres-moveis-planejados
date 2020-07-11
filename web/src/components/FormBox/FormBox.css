@@ -1,0 +1,10 @@
+div.formbox {
+    margin: 0px auto;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(90deg, rgba(0, 155, 255, 0.15) 0%, rgba(227, 17, 17, 0.1) 100%);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }

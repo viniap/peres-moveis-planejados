@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import './Login.css';
 
@@ -9,34 +10,12 @@ import useAuth from '../../contexts/auth';
 import Page from '../../components/Page';
 import Content from '../../components/Content';
 import SectionHeader from '../../components/SectionHeader';
+import FormBox from '../../components/FormBox';
+import FormSchema from '../../schemas/FormSchema';
 
 const Login = () => {
 
     const { signIn } = useAuth();
-
-    const [inputData, setInputData] = React.useState({
-        email: '',
-        password: ''
-      });
-
-    function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-        const {name, value} = event.target;
-
-        setInputData({ ...inputData, [name]: value })
-    }
-
-    async function handleSubmit(event: React.FormEvent) {
-        event.preventDefault();
-    
-        const { email, password } = inputData;
-    
-        const data = {
-          email,
-          password
-        };
-
-        signIn(data);
-    }
 
     return (
         <Page id="page-login">
@@ -45,39 +24,74 @@ const Login = () => {
 
                 <SectionHeader>Entrar</SectionHeader>
 
-                <form className="login" onSubmit={handleSubmit}>
-                    <div className="field-group">
-                        <div className="field">
-                            <label htmlFor="email">E-mail</label>
-                            <input 
-                                type="email"
-                                name="email"
-                                id="email"
-                                onChange={handleInputChange}
-                            />
-                        </div>
+                <FormBox>
+                    <Formik
+                        initialValues={{email: "", password: ""}}
+                        validationSchema={FormSchema}
+                        onSubmit={(values, actions) => {
+                            const { email, password } = values;
+    
+                            const data = {
+                                email,
+                                password
+                            };
 
-                        <div className="field">
-                            <label htmlFor="password">Senha</label>
-                            <input 
-                                type="password"
-                                name="password"
-                                id="password"
-                                onChange={handleInputChange}
-                            />
-                        </div>
+                            actions.resetForm();
+                            signIn(data);
+                        }}
+                    >
+                        {({
+                            values,
+                            errors,
+                            touched,
+                            isValid
+                        }) => (
+                            <Form className="login">
+                                <div className="field-group">
+                                    <div className="field">
+                                        <label htmlFor="email">E-mail</label>
+                                        <Field 
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            className={!(errors.email && touched.email) ? "input-style" : "input-style incorrect"}
+                                        />
+                                        <ErrorMessage 
+                                            component="span" 
+                                            name="email" 
+                                            className="error=message"
+                                        />
+                                    </div>
 
-                        <div className="button-group">
-                            <button type="submit">Entrar</button>
-                            <Link to="/esqueci">Esqueci minha senha</Link>
-                        </div>
-                    </div>
+                                    <div className="field">
+                                        <label htmlFor="password">Senha</label>
+                                        <Field 
+                                            type="password"
+                                            name="password"
+                                            id="password"
+                                            className={!(errors.password && touched.password) ? "input-style" : "input-style incorrect"}
+                                        />
+                                        <ErrorMessage 
+                                            component="span" 
+                                            name="password" 
+                                            className="error=message"
+                                        />
+                                    </div>
 
-                    <main>
+                                    <div className="button-group">
+                                        <button type="submit" disabled={!isValid}>Entrar</button>
+                                        <Link to="/esqueci">Esqueci minha senha</Link>
+                                    </div>
+                                </div>
+                            </Form>
+                        )}
+                    </Formik>
+
+                    <main className="login">
                         <h6>Ainda não possui uma conta?</h6>
                         <RegisterModal />
                     </main>
-                </form>
+                </FormBox>
             </Content>
         </Page>
     );

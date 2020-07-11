@@ -16,10 +16,6 @@ div#page-dashboard {
     background: none, linear-gradient(180deg, #F0F0F5 0%, #FFFFFF 100%);
 }
 
-div#page-login {
-    overflow: hidden;
-}
-
 @media(max-width: 945px){
     div#page-home {
         background: url("../../assets/home-background.svg") no-repeat center bottom, 
