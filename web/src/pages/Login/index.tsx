@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import './Login.css';
@@ -11,9 +11,10 @@ import Page from '../../components/Page';
 import Content from '../../components/Content';
 import SectionHeader from '../../components/SectionHeader';
 import FormBox from '../../components/FormBox';
-import FormSchema from '../../schemas/FormSchema';
+import LoginFormSchema from '../../schemas/LoginFormSchema';
 
 const Login = () => {
+    const history = useHistory();
 
     const { signIn } = useAuth();
 
@@ -27,7 +28,7 @@ const Login = () => {
                 <FormBox>
                     <Formik
                         initialValues={{email: "", password: ""}}
-                        validationSchema={FormSchema}
+                        validationSchema={LoginFormSchema}
                         onSubmit={(values, actions) => {
                             const { email, password } = values;
     
@@ -38,6 +39,7 @@ const Login = () => {
 
                             actions.resetForm();
                             signIn(data);
+                            history.push('/');
                         }}
                     >
                         {({

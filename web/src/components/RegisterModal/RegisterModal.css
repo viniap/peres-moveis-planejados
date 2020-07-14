@@ -1,53 +1,118 @@
-form {
-    width: 100%;
-    height: 100%;
-    padding-top: 20px;
-    /*background-color: black;*/
+div.modal-box {
+  --top-space: 50%;
+  --left-space: 50%;
+  
+  position: absolute;
+  top: var(--top-space);
+  left: var(--left-space);
+  transform: translate(calc(var(--top-space)*-1), calc(var(--left-space)*-1));
+
+  width: 80%;
+  max-width: 800px;
+  height: 100%;
+  max-height: 350px;
+  background-color: #fff;
+
+  border: double 1px transparent;
+  border-radius: 12px;
+  background-image: linear-gradient(white, white), linear-gradient(180deg, #009BFF, #E31111);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+  padding: 2px;
+  outline: none;
 }
 
-form div.field-group {
+div.modal-box div.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  /*background-color: tomato;*/
+}
+
+div.modal-box div.header h2 {
+  margin-left: 15px;
+}
+
+div.modal-box div.header span.close {
+  width: 20px;
+  height: 20px;
+  fill: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: auto;
+  /*background-color: turquoise;*/
+}
+
+div.modal-box form.register {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 15px;
+  /*background-color: black;*/
+}
+
+div.modal-box form.register div.field-group {
     width: 100%;
-    padding-top: 20px;
+    padding-top: 10px;
 
     display: flex;
     flex-direction: row;
   }
 
-form div.field-group div.field {
+div.modal-box form.register div.field-group div.field {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-form div.field-group div.field label {
+div.modal-box form.register div.field-group div.field label {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 2.0rem;
-    margin-bottom: 10px;
-  }
-
-  form div.field-group div.field input[type=text],
-  form div.field-group div.field input[type=email],
-  form div.field-group div.field input[type=password] {
-    /*flex: 1;*/
-    height: 30px;
-    width: 90%;
-    background: #ffffff;
-    border-radius: 8px;
-    border: 1px solid var(--primary-color);
-    padding-left: 10px;
     font-size: 1.6rem;
-    color: #000000;
     margin-bottom: 10px;
   }
 
-form div.field-group div.field input:focus {
-    outline: none !important;
-    border:2px solid #38607A;
+div.modal-box form.register div.field-group div.field span {
+  font-weight: normal;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: tomato;
 }
 
-form button.submitData {
+div.modal-box form.register div.field-group div.field input.input-style[type=text],
+div.modal-box form.register div.field-group div.field input.input-style[type=email],
+div.modal-box form.register div.field-group div.field input.input-style[type=password] {
+  /*flex: 1;*/
+  height: 30px;
+  width: 90%;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--primary-color-rgb), 0.3);
+  padding-left: 10px;
+  font-size: 1.6rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+div.modal-box form.register div.field-group div.field input.input-style:focus {
+    outline: none !important;
+    border:1px solid #38607A;
+}
+
+div.modal-box form.register div.field-group div.field input.input-style.incorrect {
+  border:1px solid tomato;
+}
+
+div.modal-box form.register button.submitData {
     width: 99px;
     height: 30px;
     background: var(--tertiary-color);
@@ -60,4 +125,31 @@ form button.submitData {
     margin-top: 40px;
     transition: background-color 0.2s;
     cursor: pointer;
+}
+
+div button.register {
+  outline: none;
+}
+
+div.modal-box.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*justify-content: center;*/
+  /*background-color: violet;*/
+}
+
+div.modal-box.success span.success {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /*background-color: violet;*/
+}
+
+div.modal-box.success span.success h3 {
+  margin-left: 15px;
 }

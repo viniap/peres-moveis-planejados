@@ -15,10 +15,12 @@ class UserController {
             password
         } = request.body;
 
-        const emailExist = await knex.select(['*']).from('users').where('email', email);
+        const emailExist = await knex.select(['id'])
+            .from('users')
+            .where('email', email);
 
         if(emailExist.length > 0){
-            return response.status(409).json({ message: 'E-mail já cadastrado' })
+            return response.status(409).json({ error: 'E-mail already used' })
         }
 
         await bcrypt.hash(password, 10, async (errBcrypt, passwordHash) => {
@@ -35,13 +37,7 @@ class UserController {
             });
 
             return response.status(201).json({
-                message: 'Cadastro efetuado com sucesso',
-                user: {
-                    id: userId[0],
-                    name,
-                    surname,
-                    email,
-                }
+                message: 'Registered successfully',
             })
 
         });

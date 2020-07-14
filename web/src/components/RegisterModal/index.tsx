@@ -1,52 +1,29 @@
-import React, { ChangeEvent, FormEvent } from 'react';
-import { useHistory } from 'react-router-dom';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import React from 'react';
 import Modal from '@material-ui/core/Modal';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import './RegisterModal.css'
+
 import api from '../../services/api'
+import { ReactComponent as Close } from '../../assets/close.svg'
+import { ReactComponent as Success } from '../../assets/success.svg'
+import { ReactComponent as Fail } from '../../assets/fail.svg'
+import RegisterFormSchema from '../../schemas/RegisterFormSchema';
 
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
+function titleCaseWord(word: string) {
+  if (!word) return word;
+  return word.replace(
+    /\w\S*/g,
+    function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      position: 'absolute',
-      width: 800,
-      height: 350,
-      backgroundColor: '#fff',
-      border: '2px solid',
-      borderImageSource: 'linear-gradient(180deg, #009BFF, #E31111)',
-      borderImageSlice: 1,
-      //boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-      outline: 'none'
-    },
-  }),
-);
-
 export default function RegisterModal() {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
-  const [inputData, setInputData] = React.useState({
-    name: '',
-    surname: '',
-    email: '',
-    password: ''
-  });
-
-  const history = useHistory();
+  const [submitted, setSubmit] = React.useState(false);
+  const [failed, setFail] = React.useState([false, 0]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,90 +31,160 @@ export default function RegisterModal() {
 
   const handleClose = () => {
     setOpen(false);
+    setSubmit(false);
+    setFail([false, 0]);
   };
 
-  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
-    const {name, value} = event.target;
-
-    setInputData({ ...inputData, [name]: value })
-  }
-
-  async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-
-    const { name, surname, email, password } = inputData;
-
-    const data = {
-      name,
-      surname,
-      email,
-      password
-    };
-
-    await api.post('users', data);
-
-    alert('Usuário cadastrado com sucesso');
-
-    history.push('/');
-  }
-
   const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Cadastro</h2>
+    <div className="modal-box">
+      <div className="header">
+        <h2 id="simple-modal-title">Cadastro</h2>
 
-      <form onSubmit={handleSubmit}>
-          <div className="field-group">
-              <div className="field">
-                  <label htmlFor="name">Nome</label>
-                  <input 
-                      type="text"
-                      name="name"
-                      id="name"
-                      onChange={handleInputChange}
-                  />
-              </div>
+        <span className="close" onClick={handleClose}>
+          <Close width="20px"/>
+        </span>
+      </div>
 
-              <div className="field">
-                  <label htmlFor="surname">Sobrenome</label>
-                  <input 
-                      type="text"
-                      name="surname"
-                      id="surname"
-                      onChange={handleInputChange}
-                  />
-              </div>
-          </div>
+      <Formik
+          initialValues={{name: "", surname: "", email: "", password: ""}}
+          validationSchema={RegisterFormSchema}
+          onSubmit={async (values, actions) => {
+            const { 
+              name, 
+              surname, 
+              email, 
+              password } = values;
 
-          <div className="field-group">
-              <div className="field">
-                  <label htmlFor="email">E-mail</label>
-                  <input 
-                      type="email"
-                      name="email"
-                      id="email"
-                      onChange={handleInputChange}
-                  />
-              </div>
+            const data = {
+              name: titleCaseWord(name),
+              surname: titleCaseWord(surname),
+              email,
+              password
+            };
 
-              <div className="field">
-                  <label htmlFor="password">Senha</label>
-                  <input 
-                      type="password"
-                      name="password"
-                      id="password"
-                      onChange={handleInputChange}
-                  />
-              </div>
-          </div>
+            await api.post('users', data)
+              .then(function(response) {
+                if(response.status === 201) {
+                  setSubmit(true);
+                }
+              })
+              .catch(function(error) {
+                setFail([true, error.response.status]);
+              });
+          }}
+      >
+          {({
+              values,
+              errors,
+              touched,
+              isValid
+          }) => (
+            <Form className="register">
+                <div className="field-group">
+                    <div className="field">
+                        <label htmlFor="name">Nome</label>
+                        <Field 
+                            type="text"
+                            name="name"
+                            id="name"
+                            className={!(errors.name && touched.name) ? "input-style" : "input-style incorrect"}
+                        />
+                        <ErrorMessage 
+                            component="span" 
+                            name="name" 
+                            className="error=message"
+                        />
+                    </div>
+      
+                    <div className="field">
+                        <label htmlFor="surname">Sobrenome</label>
+                        <Field 
+                            type="text"
+                            name="surname"
+                            id="surname"
+                            className={!(errors.surname && touched.surname) ? "input-style" : "input-style incorrect"}
+                        />
+                        <ErrorMessage 
+                            component="span" 
+                            name="surname" 
+                            className="error=message"
+                        />
+                    </div>
+                </div>
+      
+                <div className="field-group">
+                    <div className="field">
+                        <label htmlFor="email">E-mail</label>
+                        <Field 
+                            type="email"
+                            name="email"
+                            id="email"
+                            className={!(errors.email && touched.email) ? "input-style" : "input-style incorrect"}
+                        />
+                        <ErrorMessage 
+                            component="span" 
+                            name="email" 
+                            className="error=message"
+                        />
+                    </div>
+      
+                    <div className="field">
+                        <label htmlFor="password">Senha</label>
+                        <Field 
+                            type="password"
+                            name="password"
+                            id="password"
+                            className={!(errors.password && touched.password) ? "input-style" : "input-style incorrect"}
+                        />
+                        <ErrorMessage 
+                            component="span" 
+                            name="password" 
+                            className="error=message"
+                        />
+                    </div>
+                </div>
+      
+                <button className="submitData" type="submit" disabled={!isValid}>Cadastrar</button>
+            </Form>
+          )}
+      </Formik>
 
-          <button className="submitData" type="submit">Cadastrar</button>
-      </form>
+    </div>
+  );
+
+  const success = (
+    <div className="modal-box success">
+      <div className="header">
+        <span className="close" onClick={handleClose}>
+          <Close width="20px"/>
+        </span>
+      </div>
+
+      <span className="success">
+        <Success width="80px"/>
+        <h3>Cadastrado efetuado com sucesso</h3>
+      </span>
+    </div>
+  );
+
+  const fail = (
+    <div className="modal-box success">
+      <div className="header">
+        <span className="close" onClick={handleClose}>
+          <Close width="20px"/>
+        </span>
+      </div>
+
+      <span className="success">
+        <Fail width="80px"/>
+        <h3>{ (failed[1] === 409) ? "E-mail já cadastrado" : "Erro interno no servidor" }</h3>
+      </span>
     </div>
   );
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <button className="register" type="button" onClick={handleOpen}>
         Cadastre-se
       </button>
       <Modal
@@ -146,7 +193,7 @@ export default function RegisterModal() {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {body}
+        {submitted ? success : (failed[0] ? fail : body)}
       </Modal>
     </div>
   );

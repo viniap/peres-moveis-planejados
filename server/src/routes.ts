@@ -12,7 +12,7 @@ const visitController = new VisitController();
 // Listar imagens do Portfólio
 routes.get('/images', imageController.index);
 
-// Cadastrar o usuário
+// Cadastrar usuário
 routes.post('/users', userController.create);
 
 // Autenticar o usuário (iniciar sessão)

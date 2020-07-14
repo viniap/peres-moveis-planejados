@@ -1,7 +1,12 @@
 div#page-home,
-div#page-login,
 div#page-dashboard {
     height: 100vh;
+    overflow-y: auto;
+}
+
+div#page-login {
+    height: 100vh;
+    overflow-y: auto;
 }
 
 div#page-profile,
@@ -14,6 +19,7 @@ div#page-profile,
 div#page-visit,
 div#page-dashboard {
     background: none, linear-gradient(180deg, #F0F0F5 0%, #FFFFFF 100%);
+    background-attachment: fixed;
 }
 
 @media(max-width: 945px){

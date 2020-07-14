@@ -5,6 +5,7 @@ form.login {
   /*background-color: tomato;*/
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 form.login div.field-group {
@@ -104,27 +105,15 @@ form.login .field-group .button-group button:hover {
   background: #0089E1;
 }
 
-form.login {
+main.login {
+  max-width: 550px;
   width: 100%;
   height: 100%;
-}
-
-main.login {
-  width: 450px;
-  margin-right: 0;
-  margin-left: auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   /*background-color: tomato;*/
-}
-
-main.login h6 {
-  /*margin-left: 135px;*/
-  margin-top: 50px;
-  /*background-color: chartreuse;*/
-  width: 300px;
-  height: 40px;
 }
 
 main.login div button {
@@ -137,10 +126,7 @@ main.login div button {
   font-size: 1.6rem;
   border: 0;
   cursor: pointer;
-
-  /*margin-left: 135px;*/
-  margin-bottom: 70px;
-  margin-top: auto;
+  margin-top: 20px;
 }
 
 main.login div button:hover {
@@ -152,4 +138,38 @@ form.login div.field-group div.field span {
   font-size: 1.6rem;
   margin-bottom: 10px;
   color: tomato;
+}
+
+@media(max-width: 1000px) {
+  main.login h6 {
+    font-size: 1.8rem;
+    transition: font-size 200ms;
+  }
+
+  main.login div button {
+    width: 96px;
+    height: 32px;
+    font-size: 1.4rem;
+    transition: all 200ms;
+  }
+}
+
+@media(max-width: 800px) {
+  main.login {
+    margin-top: 50px
+  }
+
+  form.login div.field-group div.field label {
+    align-self: center;
+  }
+
+  form.login div.field-group div.button-group {
+    margin-top: 20px;
+  }
+}
+
+@media(max-width: 600px) {
+  form.login div.field-group div.field label {
+    font-size: 1.6rem;
+  }
 }
