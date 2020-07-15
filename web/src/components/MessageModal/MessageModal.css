@@ -1,0 +1,66 @@
+div.message-modal {
+    --top-space: 50%;
+    --left-space: 50%;
+    
+    position: absolute;
+    top: var(--top-space);
+    left: var(--left-space);
+    transform: translate(calc(var(--top-space)*-1), calc(var(--left-space)*-1));
+  
+    width: 80%;
+    max-width: 800px;
+    height: 100%;
+    max-height: 350px;
+    background-color: #fff;
+  
+    border: double 1px transparent;
+    border-radius: 12px;
+    background-image: linear-gradient(white, white), linear-gradient(180deg, #009BFF, #E31111);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    padding: 2px;
+    outline: none;
+}
+
+div.message-modal div.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    /*background-color: tomato;*/
+}
+
+div.message-modal div.header span.close {
+    width: 20px;
+    height: 20px;
+    fill: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-left: auto;
+    /*background-color: turquoise;*/
+}
+  
+div.message-modal span.message {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /*background-color: violet;*/
+}
+
+div.message-modal span.message h3 {
+    margin-top: 15px;
+    font-weight: normal;
+    text-align: center;
+}

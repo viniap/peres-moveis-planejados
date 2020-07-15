@@ -12,8 +12,13 @@ import Content from '../../components/Content';
 import SectionHeader from '../../components/SectionHeader';
 import FormBox from '../../components/FormBox';
 import LoginFormSchema from '../../schemas/LoginFormSchema';
+import MessageModal from '../../components/MessageModal';
+import { ReactComponent as Fail } from '../../assets/fail.svg'
 
 const Login = () => {
+    const [open, setOpen] = React.useState(false);
+    const [message, setMessage] = React.useState("");
+
     const history = useHistory();
 
     const { signIn } = useAuth();
@@ -29,7 +34,8 @@ const Login = () => {
                     <Formik
                         initialValues={{email: "", password: ""}}
                         validationSchema={LoginFormSchema}
-                        onSubmit={(values, actions) => {
+                        onSubmit={async (values, actions) => {
+                            setOpen(false);
                             const { email, password } = values;
     
                             const data = {
@@ -37,9 +43,21 @@ const Login = () => {
                                 password
                             };
 
-                            actions.resetForm();
-                            signIn(data);
-                            history.push('/');
+                            const statusCode = await signIn(data);
+                            
+                            if(statusCode === 200) {
+                                history.push('/');
+                                window.location.reload();
+                            }
+                            else if(statusCode === 401) {
+                                setMessage("E-mail ou senha incorretos");
+                                setOpen(true);
+                            }
+                            else {
+                                setMessage("Erro interno no servidor");
+                                setOpen(true);
+                            }
+                            
                         }}
                     >
                         {({
@@ -85,6 +103,11 @@ const Login = () => {
                                         <Link to="/esqueci">Esqueci minha senha</Link>
                                     </div>
                                 </div>
+                                <MessageModal 
+                                    message={message}
+                                    open={open}
+                                    icon={ <Fail width="80px" height="80px"/> }
+                                />
                             </Form>
                         )}
                     </Formik>

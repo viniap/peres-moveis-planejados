@@ -23,7 +23,7 @@ interface User {
 interface AuthContextData {
     signed: boolean;
     user: User | null;
-    signIn(data: object): Promise<void>;
+    signIn(data: object): Promise<any>;
     signOut(): void;
 }
 
@@ -56,15 +56,26 @@ export const AuthProvider: React.FC = ({ children }) => {
     }, []);
 
     async function signIn(data: object) {
-        const response = await api.post<ServerAuthResponse>('/users/session', data);
-
-        setUser(response.data.user);
+        const responseStatus = await api.post/*<ServerAuthResponse>*/('/users/session', data)
+            .then(function(response) {
+                setUser(response.data.user)
+                api.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
+                localStorage.setItem('@peres-moveis-planejados/user', JSON.stringify(response.data.user));
+                localStorage.setItem('@peres-moveis-planejados/token', response.data.token);
+                //window.location.reload();
+                return response.status;
+            })
+            .catch(function(error) {
+                return error.response.status;
+            });
+        return responseStatus;
+        /*setUser(response.data.user);
 
         api.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
 
         localStorage.setItem('@peres-moveis-planejados/user', JSON.stringify(response.data.user));
         localStorage.setItem('@peres-moveis-planejados/token', response.data.token);
-        window.location.reload();
+        window.location.reload();*/
     }
 
     function signOut() {

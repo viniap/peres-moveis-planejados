@@ -161,8 +161,8 @@ export default function RegisterModal() {
       </div>
 
       <span className="success">
-        <Success width="80px"/>
-        <h3>Cadastrado efetuado com sucesso</h3>
+        <Success width="80px" height="80px"/>
+        <h3>Cadastro efetuado com sucesso</h3>
       </span>
     </div>
   );
@@ -176,7 +176,7 @@ export default function RegisterModal() {
       </div>
 
       <span className="success">
-        <Fail width="80px"/>
+        <Fail width="80px" height="80px"/>
         <h3>{ (failed[1] === 409) ? "E-mail já cadastrado" : "Erro interno no servidor" }</h3>
       </span>
     </div>

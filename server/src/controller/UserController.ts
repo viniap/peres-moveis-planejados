@@ -17,7 +17,7 @@ class UserController {
 
         const emailExist = await knex.select(['id'])
             .from('users')
-            .where('email', email);
+            .where({ email });
 
         if(emailExist.length > 0){
             return response.status(409).json({ error: 'E-mail already used' })
@@ -58,7 +58,7 @@ class UserController {
             await bcrypt.compare(password, user[0].password, async (errBcrypt, result) => {
 
                 if(errBcrypt){
-                    return response.status(401). json({ message: 'Falha na autenticação' });
+                    return response.status(401). json({ message: 'Authentication failure' });
                 }
 
                 if(result){
@@ -97,7 +97,7 @@ class UserController {
                         }
 
                         return response.status(200).json({ 
-                            message: 'Autenticação efetuada com sucesso',
+                            message: 'Authentication succeeded',
                             token,
                             user: userData
                         });
@@ -113,21 +113,21 @@ class UserController {
                     }
                 
                     return response.status(200).json({ 
-                        message: 'Autenticação efetuada com sucesso',
+                        message: 'Authentication succeeded',
                         token,
                         user: userData
                     });
 
                 }
 
-                return response.status(401).json({ message: 'Falha na autenticação' });
+                return response.status(401).json({ message: 'Authentication failure' });
 
             });
 
         }
         else{
 
-            return response.status(401).json({ message: 'Falha na autenticação' });
+            return response.status(401).json({ message: 'Authentication failure' });
 
         }
 
