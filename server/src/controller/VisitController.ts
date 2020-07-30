@@ -21,12 +21,13 @@ class VisitController {
             .where('id', user[0].address_id)
             .update({
                 cep: address.cep,
-                state: address.state,
-                city: address.city,
-                neighborhood: address.neighborhood,
-                street: address.street,
+                uf: address.uf,
+                localidade: address.localidade,
+                bairro: address.bairro,
+                logradouro: address.logradouro,
                 num: address.number,
-                reference: address.reference
+                complemento: address.complemento,
+                referencia: address.referencia
             });
 
             await knex('users')
@@ -44,12 +45,13 @@ class VisitController {
         else{
             const addressId = await knex('adresses').insert({
                 cep: address.cep,
-                state: address.state,
-                city: address.city,
-                neighborhood: address.neighborhood,
-                street: address.street,
+                uf: address.uf,
+                localidade: address.localidade,
+                bairro: address.bairro,
+                logradouro: address.logradouro,
                 num: address.number,
-                reference: address.reference
+                complemento: address.complemento,
+                referencia: address.referencia
             });
 
             await knex('users')

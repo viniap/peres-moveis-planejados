@@ -3,12 +3,13 @@ import api from '../services/api'
 
 interface Address {
     cep: string;
-    state: string;
-    city: string;
-    neighborhood: string;
-    street: string;
-    number: string;
-    reference: string | null;
+    uf: string;
+    localidade: string;
+    bairro: string;
+    logradouro: string;
+    num: string;
+    complemento: string | null;
+    referencia: string | null;
 }
 
 interface User {

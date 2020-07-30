@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './Menu.css';
 
@@ -13,6 +13,15 @@ import useAuth from '../../contexts/auth'
 
 const Menu = () => {
     const { signed, user, signOut } = useAuth();
+
+    const history = useHistory();
+
+    function handleSignOut() {
+        console.log('eae');
+        signOut();
+        history.push('/');
+        window.location.reload();
+    }
 
     return (
             <div className="menu-section">
@@ -50,7 +59,7 @@ const Menu = () => {
                     </HamburguerMenuItem>
 
                     <HamburguerMenuItem display={signed ? true : false}>
-                        <button className="hamburguer-menu-link button" onClick={signOut}>Sair</button>
+                        <button className="hamburguer-menu-link button" onClick={handleSignOut}>Sair</button>
                     </HamburguerMenuItem>
                 </HamburguerMenu>
 

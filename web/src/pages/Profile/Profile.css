@@ -1,27 +1,14 @@
-h1.profile {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 3.6rem;
-    margin-top: 40px;
-}
-
-span.barra {
-    margin: 10px auto 0px;
-    width: 100%;
-    height: 10px;
-    background: linear-gradient(90deg, #009BFF 0%, rgba(227, 17, 17, 0.85) 100%);
-}
-
 form.profile {
-    margin: 0px auto;
-    padding: 40px;
+    /*margin: 0px auto;
+    padding: 40px;*/
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(0, 155, 255, 0.15) 0%, rgba(227, 17, 17, 0.1) 100%);
+    /*background-color: tomato;*/
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 form.profile div.field-group {
@@ -33,6 +20,7 @@ form.profile div.field-group {
 
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
   
 form.profile div.field-group div.field {
@@ -49,9 +37,9 @@ form.profile div.field-group div.field label {
     margin-bottom: 10px;
 }
 
-form.profile div.field-group div.field input[type=text],
-form.profile div.field-group div.field input[type=email],
-form.profile div.field-group div.field input[type=password] {
+form.profile div.field-group div.field input.input-style[type=text],
+form.profile div.field-group div.field input.input-style[type=email],
+form.profile div.field-group div.field input.input-style[type=password] {
     /*flex: 1;*/
     height: 30px;
     width: 90%;
@@ -66,8 +54,8 @@ form.profile div.field-group div.field input[type=password] {
 
 form.profile div.field-group div.field input#email,
 form.profile div.field-group div.field input#cep,
-form.profile div.field-group div.field input#neighborhood,
-form.profile div.field-group div.field input#reference,
+form.profile div.field-group div.field input#bairro,
+form.profile div.field-group div.field input#referencia,
 form.profile div.field-group div.field input#whatsapp {
     width: 45%;
 }
@@ -84,9 +72,13 @@ form.profile div.field-group div.field input#description {
     width: 95%;
 }
 
-form.profile div.field-group div.field input:focus {
+form.profile div.field-group div.field input.input-style:focus {
     outline: none !important;
-    border:2px solid #38607A;
+    border:1px solid #38607A;
+}
+
+form.profile div.field-group div.field input.input-style.incorrect {
+    border:1px solid tomato;
 }
 
 form.profile div.field-group div.button-group {
@@ -129,4 +121,11 @@ form.profile button.upload {
     height: 30px;
     border-radius: 4px;
     margin-top: 10px;
+}
+
+form.profile div.field-group div.field span {
+    font-weight: normal;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: tomato;
 }
